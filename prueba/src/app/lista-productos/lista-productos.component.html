@@ -1,0 +1,72 @@
+<br>
+<br>
+<br>
+
+<div class="container">
+    <div class="button-row">
+        <button matTooltip="Regresar" matTooltipPosition="left" type="button" class="btn btn-link"
+            (click)="fnRegresar()">
+            <mat-icon matSuffix class="icoBusqueda">arrow_back</mat-icon>
+        </button>
+
+        <button class="distancia" matTooltip="Nuevo" mat-raised-button color="primary" matTooltipPosition="left"
+            (click)="fnAddTabla()">
+            Producto
+        </button>
+    </div>
+
+    <mat-card-title>Ordenes de productos</mat-card-title>
+    <table mat-table [dataSource]="mtdProductos" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field class="example-full-width">
+                    <input autocomplete="off" #id matInput aria-describedby="">
+                    {{element.id}}
+                </mat-form-field>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field class="example-full-width">
+                    <input autocomplete="off" matInput aria-describedby="">
+                    {{element.name}}
+                </mat-form-field>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numero">
+            <th mat-header-cell *matHeaderCellDef>Número</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field class="example-full-width">
+                    <input autocomplete="off" matInput aria-describedby="">
+                    {{element.number}}
+                </mat-form-field>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accion">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element; let i = index">
+                <button *ngIf="hide" class="btn btn-link" (click)="fnDetalleProducto(element)">
+                    <mat-icon matTooltip="Ver detalle" matTooltipPosition="left" matSuffix>remove_red_eye</mat-icon>
+                </button>
+
+                <button *ngIf="mostrar" class="btn btn-link" (click)="fnAdd(element)">
+                    <mat-icon matTooltip="Agregar" matTooltipPosition="left" matSuffix>check</mat-icon>
+                </button>
+
+                <button *ngIf="mostrar" class="btn btn-link" (click)="fnCancelar(element, i)">
+                    <mat-icon matTooltip="Cancelar" matTooltipPosition="left" matSuffix>cancel</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+    </table>
+    <mat-paginator #PaginatorPro id="PaginatorPro" [pageSizeOptions]="[5, 10, 20]" aria-label="Select page of users">
+    </mat-paginator>
+</div>

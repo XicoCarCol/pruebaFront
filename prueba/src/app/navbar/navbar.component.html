@@ -1,0 +1,15 @@
+<mat-toolbar class="opacity">
+  <mat-toolbar-row>
+    <a class="separate" (click)="onViewDash()" mat-button>Registros</a>
+
+    <div style="text-align: end;" class="col">
+      <mat-label style="padding-right: 2rem;">{{title}}</mat-label>
+
+      <mat-label matTooltip="" matTooltipPosition="right" class="btn btn-outline-success">SUPERUSUARIO
+      </mat-label>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="container m-5">
+  <router-outlet></router-outlet>
+</div>
